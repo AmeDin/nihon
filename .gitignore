@@ -2,7 +2,6 @@
 
 # dependencies
 /config
-/nihongo
 /node_modules
 /.pnp
 .pnp.js
