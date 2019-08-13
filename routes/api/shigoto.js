@@ -5,8 +5,8 @@ const router = express.Router();
 // Shigoto Model
 const Shigoto = require('../../models/Shigoto');
 
-// @route   GET api/items
-// @desc    Get ALL Items
+// @route   GET api/shigoto
+// @desc    Get ALL Shigoto
 // @access  Public
 router.get('/', (req, res) => {
     Shigoto.find()
@@ -14,14 +14,15 @@ router.get('/', (req, res) => {
         .then(shigoto => res.json(shigoto))
 });
 
-// @route   POST api/items
-// @desc    Create a item
+// @route   POST api/shigoto
+// @desc    Create a Shigoto
 // @access  Private
 router.post('/', (req, res) => {
     console.log(req.body);
     const newShigoto = new Shigoto({
         engName: req.body.engName,
         jpName: req.body.jpName,
+        hiragana: req.body.hiragana,
         img: req.body.img
     });
 
@@ -29,8 +30,8 @@ router.post('/', (req, res) => {
         .then(shigoto => res.json(shigoto));
 });
 
-// @route   POST api/items/:id
-// @desc    Delete a Item
+// @route   POST api/shigoto/:id
+// @desc    Delete a Shigoto
 // @access  Private
 router.delete('/:id', (req, res) => {
     Shigoto.findById(req.params.id)

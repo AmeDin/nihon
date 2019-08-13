@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path')
-//const config = require('config')
+const config = require('config')
 
 const app = express();
 
@@ -9,8 +9,7 @@ const app = express();
 app.use(express.json());
 
 // DB Config
-//const db = config.get('mongoUri');
-const db = "mongodb+srv://root:mikubeforu@mern-nklc2.mongodb.net/test?retryWrites=true";
+const db = config.get('mongoUri');
 
 // Connect to Mongo
 mongoose
@@ -28,10 +27,10 @@ app.use('/api/shigoto', require('./routes/api/shigoto'));
 // Serve static assets if in production
 if(process.env.NODE_ENV === 'production'){
     // Set static folder
-    app.use(express.static('client/build'));
+    app.use(express.static('nihongo/build'));
 
     app.get('*', (req, res) => {
-        res.sendfile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+        res.sendfile(path.resolve(__dirname, 'nihongo', 'build', 'index.html'));
     });
 }
 

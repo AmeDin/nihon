@@ -4,18 +4,19 @@
   "description": "for nihon practice",
   "main": "server.js",
   "scripts": {
-    "client-install": "npm install --prefix client",
+    "client-install": "npm install --prefix nihongo",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix nihongo",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix nihongo && npm run build --prefix nihongo"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "bcryptjs": "^2.4.3",
     "concurrently": "^4.1.1",
+    "config": "^3.2.2",
     "express": "^4.17.1",
     "mongoose": "^5.6.7"
   },
