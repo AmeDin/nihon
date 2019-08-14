@@ -1,0 +1,4 @@
+{
+    "mongoUri": "mongodb+srv://root:mikubeforu@mern-nklc2.mongodb.net/test?retryWrites=true",
+    "jwtSecret": "sl_myJwtSecret"
+}
