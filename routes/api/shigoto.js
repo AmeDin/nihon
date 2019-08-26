@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
-//const auth = require('../../middleware/auth');
+const auth = require('../../middleware/auth');
+const cloudinary = require('../../config/cloudinary');
+const multerUploads = require('../../config/multer');
+const dataUri = require('../../config/dataUri');
 
 // Shigoto Model
 const Shigoto = require('../../models/Shigoto');
@@ -17,23 +20,31 @@ router.get('/', (req, res) => {
 // @route   POST api/shigoto
 // @desc    Create a Shigoto
 // @access  Private
-router.post('/', (req, res) => {
-    console.log(req.body);
-    const newShigoto = new Shigoto({
-        engName: req.body.engName,
-        jpName: req.body.jpName,
-        hiragana: req.body.hiragana,
-        img: req.body.img
-    });
-
-    newShigoto.save()
+router.post('/', (auth, multerUploads), (req, res) => {
+    const file = dataUri(req.file).content;
+    
+    cloudinary.uploader.upload(file)
+        .then((result) => {
+            console.log("success")
+            console.log(result)
+            const newShigoto = new Shigoto({
+                engName: req.body.engName,
+                jpName: req.body.jpName,
+                hiragana: req.body.hiragana,
+                img: result.url
+            });
+            newShigoto.save()
         .then(shigoto => res.json(shigoto));
+        }).catch((err) => {
+            console.log("error")
+            console.log(result)
+        });
 });
 
 // @route   POST api/shigoto/:id
 // @desc    Delete a Shigoto
 // @access  Private
-router.delete('/:id', (req, res) => {
+router.delete('/:id', (auth,multerUploads), (req, res) => {
     Shigoto.findById(req.params.id)
         .then(shigoto => shigoto.remove()
                 .then((y) => res.json({success: true})

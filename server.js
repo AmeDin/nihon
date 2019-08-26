@@ -1,7 +1,8 @@
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require('express')
+const mongoose = require('mongoose')
 const path = require('path')
 const config = require('config')
+const jwt = require('jsonwebtoken')
 
 const app = express();
 
@@ -23,6 +24,9 @@ mongoose
 
 // Use Routes
 app.use('/api/shigoto', require('./routes/api/shigoto'));
+app.use('/api/vocabulary', require('./routes/api/vocabulary'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 // Serve static assets if in production
 if(process.env.NODE_ENV === 'production'){

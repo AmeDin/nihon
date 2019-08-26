@@ -6,7 +6,7 @@
   "scripts": {
     "client-install": "npm install --prefix nihongo",
     "start": "node server.js",
-    "server": "nodemon server.js",
+    "server": "node server.js",
     "client": "npm start --prefix nihongo",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix nihongo && npm run build --prefix nihongo"
@@ -15,12 +15,14 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.14.0",
     "concurrently": "^4.1.1",
     "config": "^3.2.2",
+    "datauri": "^2.0.0",
+    "dropbox-v2-api": "^2.4.4",
     "express": "^4.17.1",
-    "mongoose": "^5.6.7"
-  },
-  "devDependencies": {
-    "nodemon": "^1.19.1"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.7",
+    "multer": "^1.4.2"
   }
 }
