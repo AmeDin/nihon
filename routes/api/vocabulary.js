@@ -1,7 +1,5 @@
 const express = require('express');
-const fs = require("fs");
 const auth = require('../../middleware/auth');
-const dropbox = require('../../config/dropbox');
 const cloudinary = require('../../config/cloudinary');
 const multerUploads = require('../../config/multer');
 const dataUri = require('../../config/dataUri');
@@ -59,22 +57,6 @@ router.delete('/:id', auth, (req, res) => {
                 )
             )
         .catch(err => res.status(404).json({success: false}))
-});
-
-// @route   GET api/vocabulary/img
-// @desc    Get temp image from dropbox
-// @access  Public
-router.get('/img', (req, res) => {
-    dropbox({
-        resource: 'files/get_temporary_link',
-        parameters: {
-            path: '/' + req.body.category + '/' + req.body.img
-        }
-    }, (err, result) => {
-        console.log(err)
-        console.log(result)
-        res.json(result)
-    });
 });
 
 module.exports = router;
