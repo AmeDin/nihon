@@ -9,8 +9,6 @@ const Alphabet = require('../../models/Alphabet');
 // @desc    Get ALL Hiragana
 // @access  Public
 router.get('/config/:isHiragana.:level', (req, res) => {
-    console.log(req)
-    console.log(req.body)
     Alphabet.find()
         .where('isHiragana').equals(req.params.isHiragana)
         .where('level').gt(0).lte(req.params.level)
