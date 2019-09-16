@@ -5,8 +5,8 @@ const auth = require('../../middleware/auth');
 // Alphabet Model
 const Alphabet = require('../../models/Alphabet');
 
-// @route   GET api/hiragana
-// @desc    Get ALL Hiragana
+// @route   GET api/config
+// @desc    Get alphabet (Hiragana/Katakana)
 // @access  Public
 router.get('/config/:isHiragana.:level', (req, res) => {
     Alphabet.find()
@@ -16,17 +16,7 @@ router.get('/config/:isHiragana.:level', (req, res) => {
         .then(hiragana => res.json(hiragana))
 });
 
-// @route   GET api/katagana
-// @desc    Get ALL Katagana
-// @access  Public
-router.get('/katagana', (req, res) => {
-    Alphabet.find()
-        .where( isHiragana ).equals(false)
-        .sort({ jpName: 1 })
-        .then(katagana => res.json(katagana))
-});
-
-// @route   POST api/hiragana
+// @route   POST api/
 // @desc    Create a Alphabet
 // @access  Private
 router.post('/', auth, (req, res) => {
