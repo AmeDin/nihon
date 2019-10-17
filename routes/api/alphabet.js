@@ -16,6 +16,19 @@ router.get('/config/:isHiragana.:level', (req, res) => {
         .then(hiragana => res.json(hiragana))
 });
 
+
+
+// @route   GET api/all
+// @desc    Get alphabet (Hiragana/Katakana)
+// @access  Public
+router.get('/all/:level', (req, res) => {
+    
+    Alphabet.find()
+    .where('level').gt(0).lte(req.params.level)
+    .sort({ level: 1 })
+    .then(alphabet => res.json(alphabet))
+});
+
 // @route   POST api/
 // @desc    Create a Alphabet
 // @access  Private
