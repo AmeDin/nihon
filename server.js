@@ -2,7 +2,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path')
 const config = require('config')
-const jwt = require('jsonwebtoken')
 
 const app = express();
 
@@ -28,6 +27,7 @@ app.use('/api/vocabulary', require('./routes/api/vocabulary'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/alphabet', require('./routes/api/alphabet'));
+app.use('/api/sentence', require('./routes/api/sentence'));
 
 // Serve static assets if in production
 if(process.env.NODE_ENV === 'production'){
